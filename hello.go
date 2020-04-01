@@ -1,17 +1,24 @@
 package main
 
-import "fmt"
+const spanish = "Spanish"
 
-const greeting = "Hello "
+const defaultGreeting = "World"
+const englishGreeting = "Hello "
+const spanishGreeting = "Hola "
 
-func Hello(name string) string {
+func Hello(name string, lang string) string {
 	if name == "" {
-		name = "World"
+		name = defaultGreeting
 	}
-
-	return greeting + name
+	return greetingWithPrefix(lang) + name
 }
 
-func main() {
-	fmt.Printf(Hello("World"))
+func greetingWithPrefix(lang string) (greeting string) {
+	switch lang {
+	case spanish:
+		greeting = spanishGreeting
+	default:
+		greeting = englishGreeting
+	}
+	return
 }
