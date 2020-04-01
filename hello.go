@@ -2,9 +2,16 @@ package main
 
 import "fmt"
 
+const greeting = "Hello "
+
 func Hello(name string) string {
-	return "Hello " + name
+	if name == "" {
+		name = "World"
+	}
+
+	return greeting + name
 }
+
 func main() {
 	fmt.Printf(Hello("World"))
 }
