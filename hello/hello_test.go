@@ -1,4 +1,4 @@
-package main
+package hello
 
 import (
 	"fmt"
@@ -6,8 +6,14 @@ import (
 )
 
 func ExampleHello() {
-	fmt.Println(Hello("Chris", "English"))
-	// Output: Hello Chris
+	fmt.Println(Hello("Chris", "Spanish"))
+	// Output: Hola Chris
+}
+
+func BenchmarkHello(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		Hello("Chris", "Spanish")
+	}
 }
 
 func TestHello(t *testing.T) {

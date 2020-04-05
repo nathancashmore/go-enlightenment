@@ -11,6 +11,12 @@ func ExampleAdd() {
 	// Output: 4
 }
 
+func Benchmark(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		Add(2, 2)
+	}
+}
+
 func TestAdder(t *testing.T) {
 	sum := Add(2, 2)
 	expected := 4
