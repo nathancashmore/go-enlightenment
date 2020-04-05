@@ -26,8 +26,7 @@ const frenchGreeting = "Bonjour "
 
 func main() {
 	if len(os.Args[1:]) < 2 {
-		fmt.Println("Usage: ./hello <name> <language>")
-		os.Exit(9)
+		_ = fmt.Errorf("Usage: ./hello <name> <language>")
 	}
 
 	name := os.Args[1]

@@ -16,6 +16,11 @@ func BenchmarkHello(b *testing.B) {
 	}
 }
 
+func TestMainFunc(t *testing.T) {
+	// No arguments ??
+	main()
+}
+
 func TestHello(t *testing.T) {
 
 	assertCorrectMessage := func(t *testing.T, got, want string) {
