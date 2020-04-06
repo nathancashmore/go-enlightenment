@@ -5,21 +5,39 @@ import (
 	"testing"
 )
 
-func TestPerimeter(t *testing.T) {
-	t.Run("rectangles", func(t *testing.T) {
-		rectangle := Rectangle{10.0, 10.0}
-		result := rectangle.Perimeter()
-		expected := 40.0
+func ExampleCircle_Perimeter() {
+	fmt.Printf("%v", Circle{10}.Perimeter())
+	// Output: 62.83185307179586
+}
 
-		if result != expected {
-			t.Errorf("got %.2f want %.2f", result, expected)
-		}
-	})
+func Benchmark(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		Circle{10}.Perimeter()
+	}
+}
+
+func TestPerimeter(t *testing.T) {
+	tests := []struct {
+		name  string
+		shape Shape
+		want  float64
+	}{
+		{name: "Rectangle", shape: Rectangle{Width: 12, Height: 6}, want: 36.0},
+		{name: "Circle", shape: Circle{Radius: 10}, want: 62.83185307179586},
+		{name: "Triangle", shape: Triangle{Base: 12, SideA: 6, SideB: 6}, want: 24.0},
+	}
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			got := test.shape.Perimeter()
+			if got != test.want {
+				t.Errorf("%#v got %g hasPerimeter %g", test.shape, got, test.want)
+			}
+		})
+	}
 }
 
 func ExampleCircle_Area() {
-	circle := Circle{10}
-	fmt.Printf("%v", circle.Area())
+	fmt.Printf("%v", Circle{10}.Area())
 	// Output: 314.1592653589793
 }
 

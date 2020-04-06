@@ -1,5 +1,6 @@
 /*
 Perimeter( width, height ) :
+Area(
 Provides examples of the following:
  float64
  struct
@@ -13,6 +14,7 @@ import "math"
 
 type Shape interface {
 	Area() float64
+	Perimeter() float64
 }
 
 type Rectangle struct {
@@ -36,11 +38,21 @@ func (c Circle) Area() float64 {
 	return math.Pi * c.Radius * c.Radius
 }
 
+func (c Circle) Perimeter() float64 {
+	return 2 * math.Pi * c.Radius
+}
+
 type Triangle struct {
 	Base   float64
 	Height float64
+	SideA  float64
+	SideB  float64
 }
 
 func (t Triangle) Area() float64 {
 	return (t.Base * t.Height) / 2
+}
+
+func (t Triangle) Perimeter() float64 {
+	return t.Base + t.SideA + t.SideB
 }
