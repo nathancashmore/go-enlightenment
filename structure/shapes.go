@@ -2,6 +2,10 @@
 Perimeter( width, height ) :
 Provides examples of the following:
  float64
+ struct
+ method
+ interface - (parametric polymorphism)
+ table based tests
 */
 package structure
 
@@ -30,4 +34,13 @@ type Circle struct {
 
 func (c Circle) Area() float64 {
 	return math.Pi * c.Radius * c.Radius
+}
+
+type Triangle struct {
+	Base   float64
+	Height float64
+}
+
+func (t Triangle) Area() float64 {
+	return (t.Base * t.Height) / 2
 }
