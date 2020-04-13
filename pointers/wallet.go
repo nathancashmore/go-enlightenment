@@ -3,9 +3,11 @@ Deposit( BitCoin ) :
 Withdraw( BitCoin ) :
 Balance() :
 Provides examples of the following:
- Pointers
+ Pointers (*) otherwise pass by value
  nil
  errors
+ github.com/kisielk/errcheck
+
 */
 package pointers
 
