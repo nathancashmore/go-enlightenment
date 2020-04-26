@@ -4,6 +4,7 @@ SumAll( ...numbers[] ) :
 Provides examples of the following:
  array
  slices - append
+	mySlice := []int{1,2,3} rather than myArray := [3]int{1,2,3}
  range
  _ - blank identifier
  variadic function
