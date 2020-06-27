@@ -13,7 +13,12 @@ func ExampleRepeat() {
 
 func Benchmark(b *testing.B) {
 	for i := 0; i < b.N; i++ {
+
+		// Just to be clear this is about 200 ns
 		Repeat("a", 5)
+
+		// vs the library which is 60 ns !
+		strings.Repeat("b", 5)
 	}
 }
 

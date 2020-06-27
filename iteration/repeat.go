@@ -2,7 +2,7 @@
 Repeat( character ) :
 Provides examples of the following:
  for
- +=
+ += "the Add AND assignment operator"
  benchmark
  string library
 */
