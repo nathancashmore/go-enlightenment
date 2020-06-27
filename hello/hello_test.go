@@ -6,19 +6,14 @@ import (
 )
 
 func ExampleHello() {
-	fmt.Println(Hello("Chris", "Spanish"))
-	// Output: Hola Chris
+	fmt.Println(Hello("Chris", "German"))
+	// Output: Hallo Chris
 }
 
 func BenchmarkHello(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		Hello("Chris", "Spanish")
 	}
-}
-
-func TestMainFunc(t *testing.T) {
-	// No arguments ??
-	main()
 }
 
 func TestHello(t *testing.T) {
@@ -31,28 +26,35 @@ func TestHello(t *testing.T) {
 		}
 	}
 
-	t.Run("saying main to people in English", func(t *testing.T) {
+	t.Run("saying hello to people in English", func(t *testing.T) {
 		got := Hello("Chris", "English")
 		want := "Hello Chris"
 
 		assertCorrectMessage(t, got, want)
 	})
 
-	t.Run("saying main to people in Spanish", func(t *testing.T) {
+	t.Run("saying hello to people in Spanish", func(t *testing.T) {
 		got := Hello("Chris", "Spanish")
 		want := "Hola Chris"
 
 		assertCorrectMessage(t, got, want)
 	})
 
-	t.Run("saying main to people in French", func(t *testing.T) {
+	t.Run("saying hello to people in French", func(t *testing.T) {
 		got := Hello("Chris", "French")
 		want := "Bonjour Chris"
 
 		assertCorrectMessage(t, got, want)
 	})
 
-	t.Run("saying main to people in English if language unknown", func(t *testing.T) {
+	t.Run("saying hello to people in English", func(t *testing.T) {
+		got := Hello("Chris", "German")
+		want := "Hallo Chris"
+
+		assertCorrectMessage(t, got, want)
+	})
+
+	t.Run("saying hello to people in English if language unknown", func(t *testing.T) {
 		got := Hello("Chris", "Unknown")
 		want := "Hello Chris"
 

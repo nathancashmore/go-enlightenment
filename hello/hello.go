@@ -8,39 +8,22 @@ Provides examples of the following:
  switch
  returning declared variable
  processing input arguments
+
+Provides a greeting in a number of languages such as:
+[ "English", "French", "Spanish", "German" ]
 */
 package hello
 
-import (
-	"fmt"
-	"os"
-)
-
 const spanish = "Spanish"
 const french = "French"
+const german = "German"
 
 const defaultGreeting = "World"
 const englishGreeting = "Hello "
 const spanishGreeting = "Hola "
 const frenchGreeting = "Bonjour "
+const germanGreeting = "Hallo "
 
-func main() {
-	if len(os.Args[1:]) < 2 {
-		_ = fmt.Errorf("Usage: ./hello <name> <language>")
-	}
-
-	name := os.Args[1]
-	lang := os.Args[2]
-
-	fmt.Println(Hello(name, lang))
-}
-
-// Provide a greeting for a given name in a number
-// of different languages
-//
-// Supported Languages:
-//
-//  [ "English", "French", "Spanish" ]
 func Hello(name string, lang string) string {
 	if name == "" {
 		name = defaultGreeting
@@ -54,6 +37,8 @@ func greetingWithPrefix(lang string) (greeting string) {
 		greeting = spanishGreeting
 	case french:
 		greeting = frenchGreeting
+	case german:
+		greeting = germanGreeting
 	default:
 		greeting = englishGreeting
 	}
