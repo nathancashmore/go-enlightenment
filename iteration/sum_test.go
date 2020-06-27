@@ -26,17 +26,6 @@ func BenchmarkSum(b *testing.B) {
 
 func TestSum(t *testing.T) {
 
-	t.Run("collection of 5 numbers", func(t *testing.T) {
-		numbers := []int{1, 2, 3, 4, 5}
-
-		result := Sum(numbers)
-		expected := 15
-
-		if result != expected {
-			t.Errorf("got %d but expected %d, %v", result, expected, numbers)
-		}
-	})
-
 	t.Run("collection of any number", func(t *testing.T) {
 		numbers := []int{1, 2, 3, 4}
 
