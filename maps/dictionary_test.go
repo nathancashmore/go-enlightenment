@@ -16,8 +16,17 @@ func ExampleDictionary_Search() {
 func BenchmarkDictionary_Search(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		dictionary := Dictionary{"term": "description"}
-		dictionary.Search("term")
+		_, _ = dictionary.Search("term")
 	}
+}
+
+func TestErrorFormat(t *testing.T) {
+	t.Run("Error should be displayed as text", func(t *testing.T) {
+		got := ErrNotFound.Error()
+		want := "could not find the word you were looking for"
+
+		assertStrings(got, want, t)
+	})
 }
 
 func TestSearch(t *testing.T) {
@@ -45,11 +54,13 @@ func TestAdd(t *testing.T) {
 	t.Run("add should add", func(t *testing.T) {
 		dictionary := Dictionary{}
 
-		dictionary.Add("word", "a definition")
+		err := dictionary.Add("word", "a definition")
+		assertNoError(err, t)
 
 		want := "a definition"
 		got, err := dictionary.Search("word")
 
+		assertNoError(err, t)
 		assertStrings(got, want, t)
 
 		if err != nil {
@@ -71,12 +82,14 @@ func TestUpdate(t *testing.T) {
 	t.Run("update entry", func(t *testing.T) {
 		dictionary := Dictionary{"update": "update me please"}
 
-		dictionary.Update("update", "has been updated")
+		err := dictionary.Update("update", "has been updated")
+		assertNoError(err, t)
 
 		want := "has been updated"
-		got, _ := dictionary.Search("update")
+		got, err := dictionary.Search("update")
 
 		assertStrings(got, want, t)
+		assertNoError(err, t)
 	})
 
 	t.Run("cannot update if it does not exist", func(t *testing.T) {
@@ -96,6 +109,13 @@ func TestDelete(t *testing.T) {
 	_, err := dictionary.Search(word)
 
 	assertError(err, ErrNotFound, t)
+}
+
+func assertNoError(err error, t *testing.T) {
+	t.Helper()
+	if err != nil {
+		t.Fatal("got an error but didn't want one")
+	}
 }
 
 func assertError(got error, want error, t *testing.T) {

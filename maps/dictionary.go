@@ -40,29 +40,25 @@ func (d Dictionary) Search(searchTerm string) (string, error) {
 func (d Dictionary) Add(word string, description string) error {
 	_, err := d.Search(word)
 
-	switch err {
-	case ErrNotFound:
+	if err == ErrNotFound {
 		d[word] = description
-		return nil
-	case nil:
+	} else {
 		return ErrAddAlreadyExists
-	default:
-		return err
 	}
+
+	return nil
 }
 
 func (d Dictionary) Update(word string, description string) error {
 	_, err := d.Search(word)
 
-	switch err {
-	case nil:
-		d[word] = description
-		return nil
-	case ErrNotFound:
+	if err == ErrNotFound {
 		return ErrUpdateDoesNotExist
-	default:
-		return err
+	} else {
+		d[word] = description
 	}
+
+	return nil
 }
 
 func (d Dictionary) Delete(word string) {
