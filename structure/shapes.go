@@ -3,8 +3,8 @@ Perimeter( width, height ) :
 Area(
 Provides examples of the following:
  float64
- struct
- method
+ struct - A structure such as a Rectangle, Circle or Triangle
+ method - func (receiverName ReceiverType) MethodName(args)
  interface - (parametric polymorphism)
  table based tests
 */
@@ -22,6 +22,17 @@ type Rectangle struct {
 	Height float64
 }
 
+type Circle struct {
+	Radius float64
+}
+
+type Triangle struct {
+	Base   float64
+	Height float64
+	SideA  float64
+	SideB  float64
+}
+
 func (r Rectangle) Area() float64 {
 	return r.Width * r.Height
 }
@@ -30,23 +41,12 @@ func (r Rectangle) Perimeter() float64 {
 	return 2 * (r.Width + r.Height)
 }
 
-type Circle struct {
-	Radius float64
-}
-
 func (c Circle) Area() float64 {
 	return math.Pi * c.Radius * c.Radius
 }
 
 func (c Circle) Perimeter() float64 {
 	return 2 * math.Pi * c.Radius
-}
-
-type Triangle struct {
-	Base   float64
-	Height float64
-	SideA  float64
-	SideB  float64
 }
 
 func (t Triangle) Area() float64 {

@@ -10,6 +10,16 @@ func ExampleCircle_Perimeter() {
 	// Output: 62.83185307179586
 }
 
+func ExampleRectangle_Perimeter() {
+	fmt.Printf("%v", Rectangle{10, 10}.Perimeter())
+	// Output: 40
+}
+
+func ExampleTriangle_Perimeter() {
+	fmt.Printf("%v", Triangle{10, 10, 10, 10}.Perimeter())
+	// Output: 30
+}
+
 func Benchmark(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		Circle{10}.Perimeter()
@@ -39,6 +49,16 @@ func TestPerimeter(t *testing.T) {
 func ExampleCircle_Area() {
 	fmt.Printf("%v", Circle{10}.Area())
 	// Output: 314.1592653589793
+}
+
+func ExampleRectangle_Area() {
+	fmt.Printf("%v", Rectangle{10, 10}.Area())
+	// Output: 100
+}
+
+func ExampleTriangle_Area() {
+	fmt.Printf("%v", Triangle{Base: 10, Height: 10}.Area())
+	// Output: 50
 }
 
 func BenchmarkCircle_Area(b *testing.B) {

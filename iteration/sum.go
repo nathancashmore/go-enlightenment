@@ -5,10 +5,13 @@ Provides examples of the following:
  array
  slices - append
 	mySlice := []int{1,2,3} rather than myArray := [3]int{1,2,3}
-	A slice is a descriptor of an array segment. It consists of a pointer to the array, the length of the segment, and its capacity (the maximum length of the segment)
- range - lets you iterate over an array. Every time it is called it returns two values, the index and the value.
- 	_ - blank identifier (can be used to ignore the index)
- variadic function - can be called with any number of trailing arguments.
+	A slice is a descriptor of an array segment.
+	It consists of a pointer to the array, the length of the segment,
+	and its capacity (the maximum length of the segment)
+ range - lets you iterate over an array.
+	Every time it is called it returns two values, the index and the value.
+ _ - blank identifier (can be used to ignore returned elements)
+ variadic function - is a function of indefinite arity, i.e., one which accepts a variable number of arguments
  make
  len
  reflect.DeepEqual
