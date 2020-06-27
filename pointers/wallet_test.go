@@ -31,6 +31,16 @@ func TestWallet(t *testing.T) {
 		assertError(err, t, ErrNoFunds)
 	})
 
+	t.Run("Should display currency postfix", func(t *testing.T) {
+		currency := BitCoin(10)
+
+		got := currency.String()
+		want := "10 BTC"
+
+		if got != want {
+			t.Errorf("got %s want %s", got, want)
+		}
+	})
 }
 
 func assertNoError(err error, t *testing.T) {
@@ -47,17 +57,16 @@ func assertError(got error, t *testing.T, want string) {
 	}
 
 	if got.Error() != want {
-		t.Errorf("got %q want %q", got, want)
+		t.Errorf("got %s want %s", got, want)
 	}
 }
 
 func assertBalance(wallet Wallet, t *testing.T, want BitCoin) {
 	t.Helper()
 
-	result := wallet.Balance()
-	expected := want
+	got := wallet.Balance()
 
-	if result != expected {
-		t.Errorf("got %s want %s", result, expected)
+	if got != want {
+		t.Errorf("got %s want %s", got, want)
 	}
 }
