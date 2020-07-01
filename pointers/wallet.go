@@ -1,12 +1,18 @@
 /*
-Deposit( BitCoin ) :
-Withdraw( BitCoin ) :
-Balance() :
+A simple wallet in which you can Deposit, Withdraw or obtain a Balance of the
+BitCoin held within it.
+
 Provides examples of the following:
- Pointers (*) otherwise pass by value
- nil
- errors
- github.com/kisielk/errcheck
+ - Pointers (*) otherwise pass by value
+ - nil
+ - errors
+ - github.com/kisielk/errcheck
+
+Remember
+
+& <- makes a pointer from a variable.
+
+* <-  "fetches" the value stored where a pointer points to.
 
 */
 package pointers
