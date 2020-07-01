@@ -35,7 +35,6 @@ func Countdown(out io.Writer, sleeper Sleeper) {
 
 	for i := countdownStart; i > 0; i-- {
 		_, _ = fmt.Fprintln(out, i)
-		sleeper.Sleep()
 	}
 	_, _ = fmt.Fprint(out, finalWord)
 }
