@@ -29,12 +29,9 @@ func (d DefaultSleeper) Sleep() {
 }
 
 func Countdown(out io.Writer, sleeper Sleeper) {
-	for j := 3; j != 0; j-- {
-		sleeper.Sleep()
-	}
-
 	for i := countdownStart; i > 0; i-- {
 		_, _ = fmt.Fprintln(out, i)
+		sleeper.Sleep()
 	}
 	_, _ = fmt.Fprint(out, finalWord)
 }

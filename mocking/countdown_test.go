@@ -1,18 +1,26 @@
 package main
 
 import (
-	"bytes"
 	"github.com/kami-zh/go-capturer"
+	"reflect"
 	"testing"
 )
 
-type SpySleeper struct {
-	Calls int
+type CountdownSpy struct {
+	Calls []string
 }
 
-func (s *SpySleeper) Sleep() {
-	s.Calls++
+func (s *CountdownSpy) Write(p []byte) (n int, err error) {
+	s.Calls = append(s.Calls, "write")
+	return
 }
+
+func (s *CountdownSpy) Sleep() {
+	s.Calls = append(s.Calls, "sleep")
+}
+
+const write = "write"
+const sleep = "sleep"
 
 const expectedDefaultOutput = `3
 2
@@ -20,13 +28,21 @@ const expectedDefaultOutput = `3
 Go!`
 
 func TestCountdown(t *testing.T) {
-	buffer := &bytes.Buffer{}
-	sleeper := &SpySleeper{}
+	spy := &CountdownSpy{}
 
-	Countdown(buffer, sleeper)
+	Countdown(spy, spy)
 
-	assertSleepCalls(sleeper.Calls, 3, t)
-	assertOutput(buffer.String(), expectedDefaultOutput, t)
+	want := []string{
+		write,
+		sleep,
+		write,
+		sleep,
+		write,
+		sleep,
+		write,
+	}
+
+	assertCountdownOperations(spy.Calls, want, t)
 }
 
 func TestCountdownMain(t *testing.T) {
@@ -45,10 +61,10 @@ func assertOutput(got, want string, t *testing.T) {
 	}
 }
 
-func assertSleepCalls(got int, want int, t *testing.T) {
+func assertCountdownOperations(got []string, want []string, t *testing.T) {
 	t.Helper()
 
-	if got != want {
-		t.Errorf("called %d times but wanted %d", got, want)
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("wanted calls %v got %v", want, got)
 	}
 }
