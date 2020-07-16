@@ -1,6 +1,7 @@
 package concurrency
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 	"time"
@@ -16,6 +17,18 @@ func mockWebsiteChecker(url string) bool {
 func slowWebsiteChecker(url string) bool {
 	time.Sleep(20 * time.Millisecond)
 	return true
+}
+
+func ExampleWebsiteChecker() {
+	websites := []string{
+		"http://website.a.com",
+		"http://website.b.com",
+		"http://website.c.com",
+		"http://website.d.com",
+	}
+
+	fmt.Println(CheckWebsites(mockWebsiteChecker, websites, true))
+	// Output: map[http://website.a.com:true http://website.b.com:true http://website.c.com:false http://website.d.com:true]
 }
 
 func BenchmarkWebsiteChecker(b *testing.B) {

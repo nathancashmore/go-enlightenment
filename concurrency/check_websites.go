@@ -1,5 +1,5 @@
 /*
-Utility which returns a map of each URL checked to a boolean value - true for a good response, false for a bad response.
+Module to check the existence of a URL - true for a good response, false for a bad response.
 
  * goroutines : the basic unit of concurrency
  * anonymous functions
