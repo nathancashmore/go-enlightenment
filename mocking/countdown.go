@@ -1,5 +1,5 @@
 /*
-Simple routine to display countdown.
+Module to display a countdown.
 
 N.B> Use of Sleeper interface to allow mocking in test
 

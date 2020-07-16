@@ -1,5 +1,5 @@
 /*
-Repeat( character ) :
+Module to repeat a given character a defined number of times.
 Provides examples of the following:
  for
  += "the Add AND assignment operator"

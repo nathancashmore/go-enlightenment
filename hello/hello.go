@@ -1,5 +1,5 @@
 /*
-Hello (name, language) :
+Module to display a greeting based on an input name and language.
 Provides examples of the following:
  import - e.g. fmt and os
  func - public & private (uppercase & lowercase)

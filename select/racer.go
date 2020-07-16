@@ -1,5 +1,5 @@
 /*
-Module to determine the fastest returning URL based on an input of two URLs
+Module to determine the fastest returning URL based on an input of two URLs.
 */
 package _select
 

@@ -1,10 +1,10 @@
 /*
 Module to check the existence of a URL - true for a good response, false for a bad response.
-
- * goroutines : the basic unit of concurrency
- * anonymous functions
- * channels
- * the race detector : go test -race
+Covers the following :
+ goroutines : the basic unit of concurrency
+ anonymous functions
+ channels
+ the race detector : go test -race
 
 */
 package concurrency

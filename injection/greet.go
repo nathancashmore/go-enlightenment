@@ -1,5 +1,5 @@
 /*
-An object that implements the io.Writer interface to output a greeting for a given name.
+Module that implements the io.Writer interface to output a greeting for a given name.
 
 This may then be used by any object that implements the interface.  Below is an example
 to provide a default greeting for a HTTP server.

@@ -1,5 +1,5 @@
 /*
-Add( x, y ) :
+Module to add two numbers together.
 Provides examples of the following:
  int
 */

@@ -1,6 +1,5 @@
 /*
-Sum( numbers[] ) :
-SumAll( ...numbers[] ) :
+Module to sum a given set of numbers
 Provides examples of the following:
  array
  slices - append

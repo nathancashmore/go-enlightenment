@@ -1,5 +1,5 @@
 /*
-Simple Dictionary providing the ability to Search, Add, Update or Delete items.
+Dictionary Module providing the ability to Search, Add, Update or Delete items.
 
 Provides examples of the following:
  Create maps

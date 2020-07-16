@@ -1,6 +1,6 @@
 /*
-Perimeter( width, height ) :
-Area(
+Module to calculate the Area or Perimeter of a number of shapes.
+
 Provides examples of the following:
  float64
  struct - A structure such as a Rectangle, Circle or Triangle
