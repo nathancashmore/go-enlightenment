@@ -1,5 +1,6 @@
-# go-enlightenment
-A journey into the world of GOlang
+# go-enlightenment : A journey into the world of GOlang
+
+## Overview [![PkgGoDev](https://pkg.go.dev/badge/mod/github.com/nathancashmore/go-enlightenment)](https://pkg.go.dev/mod/github.com/nathancashmore/go-enlightenment)
 
 Following the TDD examples laid down by quii in [learn-go-with-tests](https://github.com/quii/learn-go-with-tests)
 
@@ -26,5 +27,21 @@ func TestMainFunc(t *testing.T) {
 }
 ```
 
+Need latest documentation uploaded to pkg.go.dev ?
+
+```
+GOPROXY=https://proxy.golang.org GO111MODULE=on go get github.com/nathancashmore/go-enlightenment@vX.X.X
+```
+
 ## Sound Bytes
 "Everything you need to know is printed to your terminal - all you have to do is be patient enough to read it."
+
+## Install
+
+```
+go get github.com/nathancashmore/go-enlightenment
+```
+
+## License
+
+MIT.
