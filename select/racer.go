@@ -1,3 +1,6 @@
+/*
+Module to determine the fastest returning URL based on an input of two URLs
+*/
 package _select
 
 import (
@@ -19,6 +22,6 @@ func Racer(urlA, urlB string) (result string) {
 
 func measureDuration(url string) time.Duration {
 	start := time.Now()
-	http.Get(url)
+	_, _ = http.Get(url)
 	return time.Since(start)
 }
