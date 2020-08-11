@@ -1,6 +1,10 @@
 # go-enlightenment : A journey into the world of GOlang
 
-## Overview [![PkgGoDev](https://pkg.go.dev/badge/mod/github.com/nathancashmore/go-enlightenment)](https://pkg.go.dev/mod/github.com/nathancashmore/go-enlightenment)
+## Overview 
+[![PkgGoDev](https://pkg.go.dev/badge/mod/github.com/nathancashmore/go-enlightenment)](https://pkg.go.dev/mod/github.com/nathancashmore/go-enlightenment) 
+[![codecov](https://codecov.io/gh/nathancashmore/go-enlightenment/branch/master/graph/badge.svg)](https://codecov.io/gh/nathancashmore/go-enlightenment) 
+[![Codeship Status for nathancashmore/go-enlightenment](https://app.codeship.com/projects/9f61c0f0-bded-0138-041a-6e53250a2796/status?branch=master)](https://app.codeship.com/projects/405612)
+
 
 Following the TDD examples laid down by quii in [learn-go-with-tests](https://github.com/quii/learn-go-with-tests)
 
