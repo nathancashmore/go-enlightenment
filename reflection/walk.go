@@ -13,8 +13,12 @@ func walk(x interface{}, fn func(input string)) {
 			walk(val.Field(i).Interface(), fn)
 		}
 	case reflect.Slice:
-		for j := 0; j < val.Len(); j++ {
-			walk(val.Index(j).Interface(), fn)
+		for i := 0; i < val.Len(); i++ {
+			walk(val.Index(i).Interface(), fn)
+		}
+	case reflect.Array:
+		for i := 0; i < val.Len(); i++ {
+			walk(val.Index(i).Interface(), fn)
 		}
 	}
 }
