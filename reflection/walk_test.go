@@ -69,6 +69,13 @@ func TestWalk(t *testing.T) {
 			},
 			[]string{"London", "Reykjavík"},
 		},
+		{
+			"Functions",
+			func() (Profile, Profile) {
+				return Profile{55, "Russia"}, Profile{22, "London"}
+			},
+			[]string{"Russia", "London"},
+		},
 	}
 
 	for _, test := range cases {
@@ -120,23 +127,6 @@ func TestWalk(t *testing.T) {
 
 		if !reflect.DeepEqual(got, want) {
 			t.Errorf("wanted %v, got %v", want, got)
-		}
-	})
-
-	t.Run("with function", func(t *testing.T) {
-		aFunction := func() (Profile, Profile) {
-			return Profile{55, "Russia"}, Profile{22, "London"}
-		}
-
-		var got []string
-		want := []string{"Russia", "London"}
-
-		Walk(aFunction, func(input string) {
-			got = append(got, input)
-		})
-
-		if !reflect.DeepEqual(got, want) {
-			t.Errorf("wanted %q, got %q", want, got)
 		}
 	})
 
