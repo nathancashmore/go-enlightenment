@@ -1,6 +1,7 @@
 package reflection
 
 import (
+	"github.com/stretchr/testify/assert"
 	"reflect"
 	"testing"
 )
@@ -74,7 +75,7 @@ func TestWalk(t *testing.T) {
 		t.Run(test.Name, func(t *testing.T) {
 			var got []string
 
-			walk(test.Input, func(input string) {
+			Walk(test.Input, func(input string) {
 				got = append(got, input)
 			})
 
@@ -84,5 +85,59 @@ func TestWalk(t *testing.T) {
 
 		})
 	}
+
+	t.Run("with maps", func(t *testing.T) {
+		// This is here because you cannot rely on the order of maps !
+
+		aMap := map[string]string{
+			"Foo": "Bar",
+			"Baz": "Boz"}
+
+		var got []string
+		Walk(aMap, func(input string) {
+			got = append(got, input)
+		})
+
+		assert.Contains(t, got, "Bar")
+		assert.Contains(t, got, "Boz")
+	})
+
+	t.Run("with channels", func(t *testing.T) {
+		aChannel := make(chan Profile)
+
+		go func() {
+			aChannel <- Profile{33, "Berlin"}
+			aChannel <- Profile{34, "London"}
+			close(aChannel)
+		}()
+
+		var got []string
+		want := []string{"Berlin", "London"}
+
+		Walk(aChannel, func(input string) {
+			got = append(got, input)
+		})
+
+		if !reflect.DeepEqual(got, want) {
+			t.Errorf("wanted %v, got %v", want, got)
+		}
+	})
+
+	t.Run("with function", func(t *testing.T) {
+		aFunction := func() (Profile, Profile) {
+			return Profile{55, "Russia"}, Profile{22, "London"}
+		}
+
+		var got []string
+		want := []string{"Russia", "London"}
+
+		Walk(aFunction, func(input string) {
+			got = append(got, input)
+		})
+
+		if !reflect.DeepEqual(got, want) {
+			t.Errorf("wanted %q, got %q", want, got)
+		}
+	})
 
 }
