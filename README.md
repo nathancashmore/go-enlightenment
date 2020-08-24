@@ -34,6 +34,9 @@ Need latest documentation uploaded to pkg.go.dev ?
     curl https://proxy.golang.org/github.com/nathancashmore/go-enlightenment/@v/vX.X.X.info
     GOPROXY=https://proxy.golang.org GO111MODULE=on go get github.com/nathancashmore/go-enlightenment@vX.X.X
 
+Need to check code for common mistakes (findbugs.?) ?
+
+    go vet
 
 ## Sound Bytes
 "Everything you need to know is printed to your terminal - all you have to do is be patient enough to read it."
