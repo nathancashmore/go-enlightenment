@@ -10,6 +10,10 @@ Then each of the goroutines runs and calls Done when finished. At the same time,
 
 "A Mutex is a mutual exclusion lock. The zero value for a Mutex is an unlocked mutex."
 
+- Use channels when passing ownership of data
+- Use mutexes for managing state
+
+ go vet - examines code for common problems
 */
 
 type Counter struct {
