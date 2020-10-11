@@ -1,5 +1,5 @@
 /*
-Provide a Store object that facilitates Fetch and Cancel methods to simulate obtaining and cancelling the retrieval
+Module that provides a Store object that facilitates Fetch and Cancel methods to simulate obtaining and cancelling the retrieval
 of a product from the store.
 
 The context package provides functions to derive new Context values from existing ones.
@@ -10,29 +10,23 @@ from it are also canceled.
 package context
 
 import (
+	"context"
 	"fmt"
 	"net/http"
 )
 
 type Store interface {
-	Fetch() string
+	Fetch(ctx context.Context) (string, error)
 	Cancel()
 }
 
 func Server(store Store) http.HandlerFunc {
 	return func(writer http.ResponseWriter, request *http.Request) {
-		ctx := request.Context()
-		data := make(chan string, 1)
+		data, err := store.Fetch(request.Context())
 
-		go func() {
-			data <- store.Fetch()
-		}()
-
-		select {
-		case d := <-data:
-			_, _ = fmt.Fprint(writer, d)
-		case <-ctx.Done():
-			store.Cancel()
+		if err != nil {
+			return // log error
 		}
+		_, _ = fmt.Fprint(writer, data)
 	}
 }
