@@ -25,7 +25,8 @@ func Server(store Store) http.HandlerFunc {
 		data, err := store.Fetch(request.Context())
 
 		if err != nil {
-			return // log error
+			fmt.Println(err)
+			return
 		}
 		_, _ = fmt.Fprint(writer, data)
 	}

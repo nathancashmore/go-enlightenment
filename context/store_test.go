@@ -30,11 +30,10 @@ func (s *SpyStore) Fetch(ctx context.Context) (string, error) {
 				s.t.Log("spy store got cancelled")
 				return
 			default:
-				time.Sleep(10 * time.Millisecond)
+				time.Sleep(100 * time.Millisecond)
 				result += string(c)
 			}
 		}
-
 		data <- result
 	}()
 
@@ -43,20 +42,6 @@ func (s *SpyStore) Fetch(ctx context.Context) (string, error) {
 		return "", ctx.Err()
 	case res := <-data:
 		return res, nil
-	}
-}
-
-func (s *SpyStore) assertWasCancelled() {
-	s.t.Helper()
-	if !s.cancelled {
-		s.t.Errorf("store was not told to cancel")
-	}
-}
-
-func (s *SpyStore) assertWasNotCancelled() {
-	s.t.Helper()
-	if s.cancelled {
-		s.t.Errorf("store was told to cancel")
 	}
 }
 
@@ -93,8 +78,6 @@ func TestServer(t *testing.T) {
 		if response.Body.String() != data {
 			t.Errorf(`got "%s" wanted "%s"`, response.Body.String(), data)
 		}
-
-		store.assertWasNotCancelled()
 	})
 
 	t.Run("tells the store to cancel work if request is cancelled", func(t *testing.T) {
