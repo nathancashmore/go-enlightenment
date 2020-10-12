@@ -27,10 +27,9 @@ func (s *SpyStore) Fetch(ctx context.Context) (string, error) {
 		for _, c := range s.response {
 			select {
 			case <-ctx.Done():
-				s.t.Log("spy store got cancelled")
 				return
 			default:
-				time.Sleep(100 * time.Millisecond)
+				time.Sleep(5 * time.Millisecond)
 				result += string(c)
 			}
 		}
@@ -59,7 +58,7 @@ func (s *SpyResponseWriter) Write([]byte) (int, error) {
 	return 0, errors.New("not implemented")
 }
 
-func (s *SpyResponseWriter) WriteHeader(statusCode int) {
+func (s *SpyResponseWriter) WriteHeader(int) {
 	s.written = true
 }
 
