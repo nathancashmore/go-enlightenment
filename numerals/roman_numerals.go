@@ -1,24 +1,30 @@
 package numerals
 
+import "strings"
+
 func convert(value int) string {
-	result := ""
+	var result strings.Builder
 	total := value
 
-	switch value {
-	case 4:
-		return "IV"
-	case 9:
-		return "IX"
-	default:
-		if total >= 5 {
-			result = result + "V"
-			total = total - 5
-		}
-
-		for i := 0; i < total; i++ {
-			result = result + "I"
+	for total > 0 {
+		switch {
+		case total > 9:
+			result.WriteString("X")
+			total -= 10
+		case total > 8:
+			result.WriteString("IX")
+			total -= 9
+		case total > 4:
+			result.WriteString("V")
+			total -= 5
+		case total > 3:
+			result.WriteString("IV")
+			total -= 4
+		default:
+			result.WriteString("I")
+			total--
 		}
 	}
 
-	return result
+	return result.String()
 }
