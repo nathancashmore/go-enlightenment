@@ -19,6 +19,7 @@ func TestRomanNumerals(t *testing.T) {
 			{"convert 7 -> VII", 7, "VII"},
 			{"convert 8 -> VIII", 8, "VIII"},
 			{"convert 9 -> IX", 9, "IX"},
+			{"convert 10 -> X", 10, "X"},
 		}
 
 		for _, test := range testinputs {
