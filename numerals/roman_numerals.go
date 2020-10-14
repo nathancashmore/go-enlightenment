@@ -54,32 +54,27 @@ func convertToNumeral(value int) string {
 
 func convertToInteger(numerals string) int {
 	var total = 0
-	var symbol strings.Builder
 
 	for len(numerals) > 0 {
 		var value = 0
-		symbol.Reset()
+		var noOfSymbolsToRemove = 0
 
 		if len(numerals) > 1 {
-			// First find a pair and check if they return a value
-			symbol.WriteString(string(numerals[0]))
-			symbol.WriteString(string(numerals[1]))
-
-			value = allRomanNumerals.ValueOf(symbol.String())
+			//Check the first pair of symbols
+			value = allRomanNumerals.ValueOf(numerals[0:2])
+			noOfSymbolsToRemove = 2
 		}
 
 		if value == 0 {
-			// Pair was not found so try a single value
-			symbol.Reset()
-			symbol.WriteString(string(numerals[0]))
-
-			value = allRomanNumerals.ValueOf(symbol.String())
+			//Check a single symbol as no pairs found
+			value = allRomanNumerals.ValueOf(numerals[0:1])
+			noOfSymbolsToRemove = 1
 		}
 
 		total += value
 
 		//Remove the symbol found from the numerals
-		numerals = numerals[symbol.Len():]
+		numerals = numerals[noOfSymbolsToRemove:]
 	}
 
 	return total
