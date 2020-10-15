@@ -1,3 +1,6 @@
+/*
+Module to provide functionality to convert Roman Numerals to their integer equivalent and back again.
+*/
 package numerals
 
 import (
@@ -36,7 +39,7 @@ var allRomanNumerals = RomanNumerals{
 	{1, "I"},
 }
 
-func convertToNumeral(value int) string {
+func ConvertToNumeral(value int) string {
 	var result strings.Builder
 	total := value
 
@@ -52,7 +55,7 @@ func convertToNumeral(value int) string {
 	return result.String()
 }
 
-func convertToInteger(numerals string) int {
+func ConvertToInteger(numerals string) int {
 	var total = 0
 
 	for len(numerals) > 0 {

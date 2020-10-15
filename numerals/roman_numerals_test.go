@@ -5,6 +5,30 @@ import (
 	"testing"
 )
 
+func ExampleConvertToNumeral() {
+	asNumeral := ConvertToNumeral(1999)
+	fmt.Println(asNumeral)
+	// Output: MCMXCIX
+}
+
+func ExampleConvertToInteger() {
+	asNumeral := ConvertToInteger("MCMXCIX")
+	fmt.Println(asNumeral)
+	// Output: 1999
+}
+
+func BenchmarkConvertToNumeral(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		ConvertToNumeral(i)
+	}
+}
+
+func BenchmarkConvertToInteger(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		ConvertToInteger("MCMXCIX")
+	}
+}
+
 func TestRomanNumerals(t *testing.T) {
 	testinputs := []struct {
 		integer int
@@ -45,7 +69,7 @@ func TestRomanNumerals(t *testing.T) {
 	t.Run("should return correct roman numeral for associated integer", func(t *testing.T) {
 		for _, test := range testinputs {
 			t.Run(fmt.Sprintf("integer value %d is converted to numeral %q", test.integer, test.numeral), func(t *testing.T) {
-				result := convertToNumeral(test.integer)
+				result := ConvertToNumeral(test.integer)
 				if result != test.numeral {
 					t.Errorf("expected %q, got %q", test.numeral, result)
 				}
@@ -56,7 +80,7 @@ func TestRomanNumerals(t *testing.T) {
 	t.Run("should return correct integer for associated roman numeral", func(t *testing.T) {
 		for _, test := range testinputs {
 			t.Run(fmt.Sprintf("numeral value %q is converted to integer %d", test.numeral, test.integer), func(t *testing.T) {
-				result := convertToInteger(test.numeral)
+				result := ConvertToInteger(test.numeral)
 				if result != test.integer {
 					t.Errorf("expected %d, got %d", test.integer, result)
 				}
