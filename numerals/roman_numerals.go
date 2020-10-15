@@ -8,19 +8,19 @@ import (
 )
 
 type RomanNumeral struct {
-	Integer int
+	Integer uint16
 	Numeral string
 }
 
 type RomanNumerals []RomanNumeral
 
-func (r RomanNumerals) ValueOf(symbol string) int {
+func (r RomanNumerals) ValueOf(symbol string) uint16 {
 	for _, numeral := range allRomanNumerals {
 		if numeral.Numeral == symbol {
 			return numeral.Integer
 		}
 	}
-	return 0
+	return uint16(0)
 }
 
 var allRomanNumerals = RomanNumerals{
@@ -39,7 +39,7 @@ var allRomanNumerals = RomanNumerals{
 	{1, "I"},
 }
 
-func ConvertToNumeral(value int) string {
+func ConvertToNumeral(value uint16) string {
 	var result strings.Builder
 	total := value
 
@@ -55,11 +55,11 @@ func ConvertToNumeral(value int) string {
 	return result.String()
 }
 
-func ConvertToInteger(numerals string) int {
-	var total = 0
+func ConvertToInteger(numerals string) uint16 {
+	var total = uint16(0)
 
 	for len(numerals) > 0 {
-		var value = 0
+		var value = uint16(0)
 		var noOfSymbolsToRemove = 0
 
 		if len(numerals) > 1 {

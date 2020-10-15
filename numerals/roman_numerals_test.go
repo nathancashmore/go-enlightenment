@@ -3,6 +3,7 @@ package numerals
 import (
 	"fmt"
 	"testing"
+	"testing/quick"
 )
 
 func ExampleConvertToNumeral() {
@@ -17,21 +18,9 @@ func ExampleConvertToInteger() {
 	// Output: 1999
 }
 
-func BenchmarkConvertToNumeral(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		ConvertToNumeral(i)
-	}
-}
-
-func BenchmarkConvertToInteger(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		ConvertToInteger("MCMXCIX")
-	}
-}
-
 func TestRomanNumerals(t *testing.T) {
 	testinputs := []struct {
-		integer int
+		integer uint16
 		numeral string
 	}{
 		{1, "I"},
@@ -87,4 +76,19 @@ func TestRomanNumerals(t *testing.T) {
 			})
 		}
 	})
+}
+
+func TestPropertiesOfConversion(t *testing.T) {
+	assertion := func(value uint16) bool {
+		t.Log("testing", value)
+		numeral := ConvertToNumeral(value)
+		integer := ConvertToInteger(numeral)
+		return integer == value
+	}
+
+	if err := quick.Check(assertion, &quick.Config{
+		MaxCount: 1000,
+	}); err != nil {
+		t.Error("failed checks", err)
+	}
 }
